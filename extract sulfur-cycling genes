@@ -1,0 +1,1 @@
+grep -i "sulfur\|sulfate\|thiosulfate\|sulfite\|sulfide" emap.emapper.annotations > sulfur.tsv
