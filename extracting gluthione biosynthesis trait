@@ -1,0 +1,1 @@
+grep -i "gshA\|gshB\|glutathione.*synthase" emap40.emapper.annotations
