@@ -2,7 +2,7 @@
 grep -c "^k141" emap40.emapper.annotations
 
 #counting annotated proteins
-awk '$21!="-" {count++} END {print count}'emap40.emapper.annotations
+awk '$21!="-"&&!/^PFAMs/{count++}END{print count}' eggnog-mapper/emap40.emapper.annotations
 
 echo "scale=1; $annotated_proteins*100/$total_proteins" | bc)%)"
 
