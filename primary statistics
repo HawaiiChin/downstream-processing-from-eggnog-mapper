@@ -13,8 +13,7 @@ cut -f5 emap40.emapper.annotations| grep -v "^#" | grep -v "^-$" | sort| uniq -c
 awk -F'\t' '{split($10, go, ","); for(i in go) print go[i]}' eggnog-mapper/emap40.emapper.annotations | grep -v "^$" |uniq -c|sort -nr|wc -l  #去冗余
 
 #KO pathways
-awk -F"\t" '{split($13, pathways, ",");for (i in pathways) 
-> print pathways[i]}' eggnog-mapper/emap40.emapper.annotations | grep "ko"|sort|uniq -c|sort -nr
+awk -F"\t" '{split($13, pathways, ",");for (i in pathways) print pathways[i]}' eggnog-mapper/emap40.emapper.annotations | grep "ko"|sort|uniq -c|sort -nr
 
 #counting seed_file
 grep -c "^[^#]" eggnog-mapper/emap40.emapper.seed_orthologs 2>/dev/null||echo "0"
