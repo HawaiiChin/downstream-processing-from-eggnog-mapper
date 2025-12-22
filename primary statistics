@@ -15,3 +15,6 @@ awk -F'\t' '{split($10, go, ","); for(i in go) print go[i]}' eggnog-mapper/emap4
 #KO pathways
 awk -F"\t" '{split($13, pathways, ",");for (i in pathways) 
 > print pathways[i]}' eggnog-mapper/emap40.emapper.annotations | grep "ko"|sort|uniq -c|sort -nr
+
+#counting seed_file
+grep -c "^[^#]" eggnog-mapper/emap40.emapper.seed_orthologs 2>/dev/null||echo "0"
