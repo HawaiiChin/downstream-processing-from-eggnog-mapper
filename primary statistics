@@ -9,6 +9,9 @@ echo "scale=1; $annotated_proteins*100/$total_proteins" | bc)%)"
 #extracting column5 for eggNOG_OGs taken as instance
 cut -f5 emap40.emapper.annotations| grep -v "^#" | grep -v "^-$" | sort| uniq -c|sort -nr|wc -l
 
+#GO counts
+awk -F'\t' '{split($10, go, ","); for(i in go) print go[i]}' eggnog-mapper/emap40.emapper.annotations | grep -v "^$" |uniq -c|sort -nr|wc -l  #去冗余
+
 #KO pathways
 awk -F"\t" '{split($13, pathways, ",");for (i in pathways) 
 > print pathways[i]}' eggnog-mapper/emap40.emapper.annotations | grep "ko"|sort|uniq -c|sort -nr
