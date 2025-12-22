@@ -6,4 +6,5 @@ awk '$3 != "-" {count++} END {print count}'emap40.emapper.annotations
 
 echo "scale=1; $annotated_proteins*100/$total_proteins" | bc)%)"
 
-cut -f2 emap40.emapper.annotations| grep -v "^#" | grep -v "^-$" | sort| uniq -c|sort -nr|wc -l
+#extracting column5 for eggNOG_OGs taken as instance
+cut -f5 emap40.emapper.annotations| grep -v "^#" | grep -v "^-$" | sort| uniq -c|sort -nr|wc -l
