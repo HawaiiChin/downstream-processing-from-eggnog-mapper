@@ -7,8 +7,9 @@ awk '$21!="-"&&!/^PFAMs/{count++}END{print count}' eggnog-mapper/emap40.emapper.
 #extracting column5 for eggNOG_OGs taken as instance
 cut -f5 emap40.emapper.annotations| grep -v "^#" | grep -v "^-$" | sort| uniq -c|sort -nr|wc -l
 
-#GO counts
-awk -F'\t' '{split($10, go, ","); for(i in go) print go[i]}' eggnog-mapper/emap40.emapper.annotations | grep -v "^$" |uniq -c|sort -nr|wc -l  #去冗余
+#GO counts & annotation
+grep -v "^#" eggnog-mapper/emap40.emapper.annotations | awk -F'\t' '{if($10!=""&&$10!="-")print$10}'|tr ',' '\n'|sort|uniq -c|sort -nr>GO_frequency.txt
+grep -v "^#" eggnog-mapper/emap40.emapper.annotations | awk -F'\t' '{if($10!=""&&$10!="\")print$1"\t"$10}'>sample40gene2GO.tsv
 
 #KO pathways
 awk -F"\t" '{split($13, pathways, ",");for (i in pathways) print pathways[i]}' eggnog-mapper/emap40.emapper.annotations | grep "ko"|sort|uniq -c|sort -nr
