@@ -1,0 +1,3 @@
+for f in /mnt/d/eggnog-mapper/*.emmaper.annotations; do if [[ -f "$f" ]]; then sample=$(basename "$f" .emapper.annotations); \
+awk -F'\t' 'NR>4 && 10!="-" {split($10, gos, ","); for (i in gos) {print $1 "\t" gos[i]}}' "$f" \
+| sort >gene2go.tsv; fi; done
