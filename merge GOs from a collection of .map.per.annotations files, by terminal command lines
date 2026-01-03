@@ -1,3 +1,3 @@
 for f in /mnt/d/eggnog-mapper/*.emmaper.annotations; do sample=$(basename "$f" .emapper.annotations); \
 awk -F'\t' -v s="$sample" 'NR>4 && 10!="-" {split($10, gos, ","); for (i in gos) {print $1 "\t" gos[i]}}' "$f" \
-| sort |uniq -c >gene2go.tsv; done
+| sort |uniq -c >>gene2go.tsv; done
