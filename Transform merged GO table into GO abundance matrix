@@ -1,0 +1,7 @@
+#put counting of each GO into table
+awk -F'\t' 'NR>1 {count[$1 "\t" $3]++} END {for (k in count) print k "\t" count[k]}' gene2go.tsv > sampled_GO_counts.tsv
+
+#transform GO_counts into GO-sample matrix
+awk -F'\t' '{samples[$1]=1; gos[$2]=1;matrix[$2,$1]=$3} END {printf "GO"; for (s in samples) printf "\t%s", s; print ""; for (g in gos)\
+{printf "%s", g; for (s in samples) printf "\t%d", matrix[g,s]+0; print ""}}' sampled_GO_counts.tsv > GO_by_sample.tsv
+
